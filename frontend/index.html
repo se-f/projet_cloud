@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Application</title>
+</head>
+<body>
+  <h1>Fetch Data App</h1>
+  <button onclick="fetchData()">Fetch Data</button>
+  <div id="result"></div>
+
+  <script>
+async function fetchData() {
+    try {
+        const response = await fetch('http://localhost:3000/api/data');
+        const data = await response.json();
+        console.log(data)
+
+        // Display the fetched data
+        displayData(data);
+    } catch (error) {
+        console.error('Error fetching data:', error);
+    }
+}
+
+function displayData(data) {
+
+    const dataContainer = document.getElementById('result');
+
+    result.innerHTML = '';
+
+
+
+    if (data && data.length > 0) {
+ 
+        const ul = document.createElement('ul');
+        data.forEach(item => {
+            const li = document.createElement('li');
+            li.textContent = `ID: ${item.id}, Amount: ${item.amount}, Description: ${item.description}`;
+            ul.appendChild(li);
+        });
+        result.appendChild(ul);
+    } else {
+        result.textContent = 'No data available';
+    }
+  }
+
+  </script>
+</body>
+
+<style>
+  body {
+  display: flex;
+  min-height: 100vh;
+  margin: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  text-align: center;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #f4f4f4;
+  margin: 10px;
+  padding: 15px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease-in-out;
+}
+
+li:hover {
+  transform: scale(1.05);
+}
+
+
+</style>
+</html>
