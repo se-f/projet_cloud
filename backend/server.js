@@ -13,7 +13,7 @@ app.use(cors());
 const db = mysql.createConnection({
   host     : 'project-db.c7y4me0oi4nv.us-east-1.rds.amazonaws.com',
   user     : 'seif',
-  password : '987654Ss',
+  password : '*******',
   database : 'webappdb',
 });
 
